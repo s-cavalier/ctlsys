@@ -21,7 +21,7 @@ namespace IOLayer {
 
             size_t n = read(fd, buffer.data(), buffer.size());
             if (n == 0) return traits_type::eof();
-            if (n == -1) throw std::runtime_error(std::string("Inputbuf failed read: ") + strerror(errno));
+            if (n == size_t(-1)) throw std::runtime_error(std::string("Inputbuf failed read: ") + strerror(errno));
 
             char* base = buffer.data();
             setg(base, base, base + n);
@@ -35,7 +35,7 @@ namespace IOLayer {
             setg(buf, buf, buf);
             fd = open(device, O_RDONLY | O_NONBLOCK);
 
-            if (fd == -1) throw std::runtime_error( std::string("failed to open device: ") + strerror(errno) );
+            if (fd == size_t(-1)) throw std::runtime_error( std::string("failed to open device: ") + strerror(errno) );
         }
         
         ~InputBuffer() { close(fd); }
