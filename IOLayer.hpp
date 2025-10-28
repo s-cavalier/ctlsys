@@ -25,6 +25,8 @@ namespace IOLayer {
 
             char* base = buffer.data();
             setg(base, base, base + n);
+
+            return traits_type::to_int_type(*gptr());
         };
 
     public:
@@ -51,8 +53,10 @@ namespace IOLayer {
     public:
         InputStream(const char* device);
 
-        friend std::istream& operator>>(std::istream& is, input_event& inp);
+        friend InputStream& operator>>(InputStream& is, input_event& inp);
     };
+
+    InputStream& operator>>(InputStream& is, input_event& inp);
 
 }
 
