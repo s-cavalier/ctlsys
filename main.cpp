@@ -8,7 +8,7 @@
 int main() {
     try {
         // Adjust to your actual keyboard event device (e.g. /dev/input/event3)
-        const char* device = "/dev/input/event3";
+        const char* device = "/dev/input/event2";
         IOLayer::InputStream in(device);
 
         std::cout << "Listening for keyboard events from " << device << "...\n";
